@@ -21,6 +21,7 @@ const upload = multer({ storage });
 
 
 // Define routes for imgToPdf functionality
+router.get('/pdf', imgToPdfController.land)
 router.post('/convert', upload.array('images'), imgToPdfController.convert);
 router.get('/download/:filename', imgToPdfController.download);
 

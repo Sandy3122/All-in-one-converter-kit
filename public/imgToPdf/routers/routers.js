@@ -1,12 +1,28 @@
 // imgToPdf/routers.js
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const multer = require('multer');
 const imgToPdfController = require('../controllers/imgToPdfController.js');
 
-// Define the /convert route
-router.post('/convert', imgToPdfController.convert);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const dir = 'uploads'; // Store files in the 'uploads' directory
+        fs.mkdirSync(dir, { recursive: true });
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        const filename = file.originalname.replace(/\s/g, '_');
+        cb(null, filename);
+    }
+});
 
-// Define the /download route
+const upload = multer({ storage });
+
+
+// Define routes for imgToPdf functionality
+router.post('/convert', upload.array('images'), imgToPdfController.convert);
 router.get('/download/:filename', imgToPdfController.download);
+
 
 module.exports = router;

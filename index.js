@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
-const port = 3000;
+const port = process.env.PORT || 3000;
 const cors = require('cors');
 
 // Enable CORS for all routes

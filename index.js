@@ -27,7 +27,10 @@ const imgToPdfController = require('./public/imgToPdf/controllers/imgToPdfContro
 
 // Serve the index.html as the landing page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/main.html'));
+    res.sendFile(path.join(__dirname, '/main.html'));
+});
+app.get('/imgToPdf', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/imgToPdf/index.html'));
 });
 
 // Define routes for imgToPdf functionality

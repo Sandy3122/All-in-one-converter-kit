@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-function land(req, res){
-    res.sendFile(path.join(__dirname, '../index.html'))
-}
+// function land(req, res){
+//     res.sendFile(path.join(__dirname, '../index.html'))
+// }
 
 function convert(req, res) {
     console.log("Convert Function Is Called");
@@ -96,4 +96,4 @@ function download(req, res) {
     fileStream.pipe(res);
 }
 
-module.exports = { land, convert, download };
+module.exports = { convert, download };

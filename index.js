@@ -5,6 +5,15 @@ const fs = require('fs');
 const path = require('path');
 const port = 3000;
 const multer = require('multer');
+const cors = require('cors');
+
+// Enable CORS for all routes
+const corsOptions = {
+    origin: '*',
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(express.static('public'));
 

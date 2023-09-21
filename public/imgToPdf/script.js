@@ -5,9 +5,9 @@ const resultDiv = document.getElementById('result');
 const orientationSelect = document.getElementById('orientation'); // For orientation
 
 convertButton.addEventListener('click', (event) => {
-
+    console.log('Button clicked'); // Check if the click event is registered
     event.preventDefault(); // Prevent the default form submission
-    
+
     const formData = new FormData(imageForm);
     const selectedOrientation = orientationSelect.value; // Get the selected orientation
 
@@ -22,6 +22,7 @@ convertButton.addEventListener('click', (event) => {
             title: 'Oops...',
             text: 'Please select one or more images to convert!',
         });
+        console.log('For Error'); // Check if the click event is registered
     } else {
         // Files are selected, proceed with the conversion
         const formData = new FormData(imageForm);
@@ -55,5 +56,6 @@ convertButton.addEventListener('click', (event) => {
             console.error('Error:', error);
             resultDiv.innerHTML = 'An error occurred.';
         });
+        console.log('After fetch request'); // Check if the fetch request is executed
     }
 });

@@ -2,22 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.js",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
-    },
-    {
-      "src": "/imgToPdf/(.*)",
-      "dest": "/public/imgToPdf/$1"
-    },
-    {
-      "src": ".*",
-      "dest": "./server.js"
+      "src": "/(.*)",
+      "dest": "server.js"
     }
   ]
 }

@@ -4,8 +4,8 @@ const convertButton = document.getElementById('convertButton');
 const resultDiv = document.getElementById('result');
 const orientationSelect = document.getElementById('orientation'); // For orientation
 
-imageForm.addEventListener('submit', (event) => {
-    console.log("Button Clicked");
+convertButton.addEventListener('click', (event) => {
+    console.log('Button clicked'); // Check if the click event is registered
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(imageForm);
@@ -22,14 +22,16 @@ imageForm.addEventListener('submit', (event) => {
             title: 'Oops...',
             text: 'Please select one or more images to convert!',
         });
+        console.log('For Error'); // Check if the click event is registered
     } else {
         // Files are selected, proceed with the conversion
-        orientationSelect.selectedIndex = 0; // Reset the <select>
-        imageInput.value = ''; // Clear the <input>
+        const formData = new FormData(imageForm);
+        orientationSelect.selectedIndex = 0;    // Reset the <select>
+        imageInput.value = '';                  // Clear the <input>
 
         fetch('/public/imgToPdf/convert', {
             method: 'POST',
-            body: formData,
+            body: formData
         })
         .then((response) => {
             if (!response.ok) {
@@ -37,7 +39,7 @@ imageForm.addEventListener('submit', (event) => {
             }
             return response.json();
         })
-        .then((data) => {
+        .then(data => {
             // Display a SweetAlert success message with a download button
             Swal.fire({
                 icon: 'success',
@@ -46,7 +48,7 @@ imageForm.addEventListener('submit', (event) => {
                 showCancelButton: false,
                 confirmButtonText: 'Download PDF',
                 customClass: {
-                    confirmButton: 'download-button',
+                    confirmButton: 'download-button'
                 },
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -55,11 +57,10 @@ imageForm.addEventListener('submit', (event) => {
                 }
             });
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
             resultDiv.innerHTML = 'An error occurred.';
         });
-        console.log("After, The Fetch Query");
-
+        console.log('After fetch request'); // Check if the fetch request is executed
     }
 });

@@ -25,7 +25,7 @@ convertButton.addEventListener('click', () => {
         orientationSelect.selectedIndex = 0;    // Reset the <select>
         imageInput.value = '';                  // Clear the <input>
 
-        fetch('/imgToPdf/convert', {
+        fetch('/public/imgToPdf/convert', {
             method: 'POST',
             body: formData
         })

@@ -17,10 +17,22 @@ app.use(cors(corsOptions));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
 // Serve the index.html as the landing page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/main.html'));
 });
+
+// Add a route for testing file uploads
+app.post('/test-upload', upload.array('images'), (req, res) => {
+    // Respond with a success message
+    res.json({ message: 'File uploaded successfully' });
+});
+
 
 const imgToPdfRoutes = require('./public/imgToPdf/routers/routers')
 

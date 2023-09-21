@@ -42,7 +42,7 @@ function convert(req, res) {
     const writeStream = fs.createWriteStream(pdfPath);
 
     writeStream.on('finish', () => {
-        res.json({ pdfUrl: `/imgToPdf/download/${pdfFilename}` });
+        res.json({ pdfUrl: `/public/imgToPdf/download/${pdfFilename}` });
     });
 
     doc.pipe(writeStream);

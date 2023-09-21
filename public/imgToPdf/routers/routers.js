@@ -26,12 +26,4 @@ const upload = multer({ storage });
 router.post('/convert', upload.array('images'), imgToPdfController.convert);
 router.get('/download/:filename', imgToPdfController.download);
 
-router.get('/sai', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'))
-})
-
-router.get('/example', (req, res) => {
-    res.send('This is an example route in /imgToPdf');
-});
-
 module.exports = router;

@@ -4,8 +4,8 @@ const convertButton = document.getElementById('convertButton');
 const resultDiv = document.getElementById('result');
 const orientationSelect = document.getElementById('orientation'); // For orientation
 
-convertButton.addEventListener('click', (event) => {
-    console.log('Button clicked'); // Check if the click event is registered
+imageForm.addEventListener('submit', (event) => {
+    console.log("Button Clicked");
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(imageForm);
@@ -22,19 +22,22 @@ convertButton.addEventListener('click', (event) => {
             title: 'Oops...',
             text: 'Please select one or more images to convert!',
         });
-        console.log('For Error'); // Check if the click event is registered
     } else {
         // Files are selected, proceed with the conversion
-        const formData = new FormData(imageForm);
-        orientationSelect.selectedIndex = 0;    // Reset the <select>
-        imageInput.value = '';                  // Clear the <input>
+        orientationSelect.selectedIndex = 0; // Reset the <select>
+        imageInput.value = ''; // Clear the <input>
 
         fetch('/public/imgToPdf/convert', {
             method: 'POST',
-            body: formData
+            body: formData,
         })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
             // Display a SweetAlert success message with a download button
             Swal.fire({
                 icon: 'success',
@@ -43,7 +46,7 @@ convertButton.addEventListener('click', (event) => {
                 showCancelButton: false,
                 confirmButtonText: 'Download PDF',
                 customClass: {
-                    confirmButton: 'download-button'
+                    confirmButton: 'download-button',
                 },
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -52,10 +55,11 @@ convertButton.addEventListener('click', (event) => {
                 }
             });
         })
-        .catch(error => {
+        .catch((error) => {
             console.error('Error:', error);
             resultDiv.innerHTML = 'An error occurred.';
         });
-        console.log('After fetch request'); // Check if the fetch request is executed
+        console.log("After, The Fetch Query");
+
     }
 });

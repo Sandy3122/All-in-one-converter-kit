@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
-const port = process.env.PORT || 3000;
 const cors = require('cors');
+const dotenv = require('dotenv')
+
+// To access the .env 
+dotenv.config();
 
 // Enable CORS for all routes
 const corsOptions = {
@@ -13,7 +16,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, '/public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Serve the index.html as the landing page
 app.get('/', (req, res) => {
@@ -22,9 +27,10 @@ app.get('/', (req, res) => {
 
 const imgToPdfRoutes = require('./public/imgToPdf/routers/routers')
 
-app.use('/imgToPdf', imgToPdfRoutes)
+app.use('/public/imgToPdf', imgToPdfRoutes)
 
 
+const port = process.env.port || 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

@@ -20,6 +20,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+function example(req, res){
+    res.send("Testing Route")
+}
+
 function convert(req, res) {
     try {
         console.log("Convert Function Is Called");
@@ -102,4 +106,4 @@ function download(req, res) {
     }
 }
 
-module.exports = { convert, download };
+module.exports = { convert, download, example };

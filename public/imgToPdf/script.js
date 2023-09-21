@@ -4,7 +4,10 @@ const convertButton = document.getElementById('convertButton');
 const resultDiv = document.getElementById('result');
 const orientationSelect = document.getElementById('orientation'); // For orientation
 
-convertButton.addEventListener('click', () => {
+convertButton.addEventListener('click', (event) => {
+
+    event.preventDefault(); // Prevent the default form submission
+    
     const formData = new FormData(imageForm);
     const selectedOrientation = orientationSelect.value; // Get the selected orientation
 

@@ -1,8 +1,5 @@
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200&family=Caveat&family=Dancing+Script&family=Pacifico&family=Signika+Negative:wght@300&display=swap');
 
-
-body {
+body{
     font-style: italic;
     background-image: linear-gradient(rgb(65, 62, 64), rgb(20, 20, 18, 0.4));
     background-size: cover;

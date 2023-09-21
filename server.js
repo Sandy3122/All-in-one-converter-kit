@@ -15,9 +15,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
-// app.use(express.static('public'));
-// app.use(express.static(path.join(__dirname, '/public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Serve the index.html as the landing page
@@ -28,7 +25,6 @@ app.get('/', (req, res) => {
 const imgToPdfRoutes = require('./public/imgToPdf/routers/routers')
 
 app.use('/public/imgToPdf', imgToPdfRoutes)
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

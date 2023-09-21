@@ -7,6 +7,7 @@ const { getImageSize } = require('../utils');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        // Use path.join to create the correct directory structure
         const dir = path.join(__dirname, '../public/imgToPdf/uploads', uuidv4());
         fs.mkdirSync(dir, { recursive: true });
         cb(null, dir);

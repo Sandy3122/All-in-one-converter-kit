@@ -86,7 +86,7 @@ function convert(req, res) {
         doc.end();
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Errors' });
     }
 }
 
